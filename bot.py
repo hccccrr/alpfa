@@ -1,80 +1,85 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from btnsK import main_reply_kb, class_reply_kb
+from btnsK import *
 
 BOT_TOKEN = "8433474851:AAGFt_WZ2agAWcM-UVmLxzhSrH-aySkIcaw"
 API_ID = 25742938
 API_HASH = "b35b715fe8dc0a58e8048988286fc5b6"
 
+QR_IMAGE_URL = "https://i.postimg.cc/0N9z7cJf/qr.png"
+PROOF_CHANNEL = "https://t.me/+eD91tgZztvUxNDQ1"
+
 app = Client(
     "SonusirBot",
     bot_token=BOT_TOKEN,
     api_id=API_ID,
-    api_hash=API_HASH,
+    api_hash=API_HASH
 )
 
 # ===== START =====
 @app.on_message(filters.command("start"))
-async def start_cmd(_, msg: Message):
-    await msg.reply(
-        "Main Menu",
-        reply_markup=main_reply_kb
-    )
+async def start(_, m: Message):
+    await m.reply("Main Menu", reply_markup=start_kb)
 
 # ===== QUESTIONS =====
-@app.on_message(filters.text & filters.regex("^QUESTIONS CHAHIYE$"))
-async def questions(_, msg: Message):
-    await msg.reply(
-        "Konse class ka questions chahiye",
-        reply_markup=class_reply_kb
-    )
+@app.on_message(filters.regex("^QUESTIONS CHAHIYE$"))
+async def questions(_, m: Message):
+    await m.reply("Konse class ka questions chahiye", reply_markup=class_kb)
 
 # ===== 10TH =====
-@app.on_message(filters.text & filters.regex("^10TH KA QUESTIONS CHAHIYE$"))
-async def ten(_, msg: Message):
-    await msg.reply(
-        "Mil jayega\n"
-        "Payment Krna padega ₹999 agar real question chahiye toh\n"
-        "Exam se 4 hours pehle milega questions aur answers\n\n"
-        "10TH KA PROOF DIJIYE SIR"
+@app.on_message(filters.regex("^10TH KA QUESTIONS CHAHIYE$"))
+async def ten(_, m: Message):
+    await m.reply(
+        "Mil jayega\nPayment ₹999\nExam se 4 hours pehle milega questions aur answers",
+        reply_markup=proof_10_kb
     )
 
 # ===== 12TH =====
-@app.on_message(filters.text & filters.regex("^12TH QUESTION CHAHIYE$"))
-async def twelve(_, msg: Message):
-    await msg.reply(
-        "Mil jayega\n"
-        "Payment Krna padega ₹999 agar real question chahiye toh\n"
-        "Exam se 4 hours pehle milega questions\n\n"
-        "12TH KA PROOF DIJIYE SIR"
+@app.on_message(filters.regex("^12TH QUESTION CHAHIYE$"))
+async def twelve(_, m: Message):
+    await m.reply(
+        "Mil jayega\nPayment ₹999\nExam se 4 hours pehle milega questions",
+        reply_markup=proof_12_kb
+    )
+
+# ===== PROOF =====
+@app.on_message(filters.regex("KA PROOF DIJIYE"))
+async def proof(_, m: Message):
+    await m.reply(
+        f"Is channel me proof hai 👇\n{PROOF_CHANNEL}",
+        reply_markup=payment_choice_kb
     )
 
 # ===== PAYMENT NOW =====
-@app.on_message(filters.text & filters.regex("^PAYMENT ABHI KRNA H$"))
-async def pay_now(_, msg: Message):
-    await msg.reply(
-        "Okay\n\n"
-        "Message @sonusir2026 for payment"
+@app.on_message(filters.regex("^PAYMENT ABHI KRNA H$"))
+async def pay_now(_, m: Message):
+    await m.reply(
+        "QR code se payment kar sakte ho 👇",
+        reply_markup=qr_kb
+    )
+
+# ===== QR IMAGE =====
+@app.on_message(filters.regex("^QR CODE DIJIYE SIR$"))
+async def qr(_, m: Message):
+    await m.reply_photo(
+        photo=QR_IMAGE_URL,
+        caption="📸 Scan QR & complete payment\n\nPayment ke baad @sonusir2026 ko message kare",
+        reply_markup=qr_kb
     )
 
 # ===== PAYMENT LATER =====
-@app.on_message(filters.text & filters.regex("^PAYMENT BAAD ME KRENGE$"))
-async def pay_later(_, msg: Message):
-    await msg.reply("Okay")
+@app.on_message(filters.regex("^PAYMENT BAAD ME KRENGE SIR$"))
+async def pay_later(_, m: Message):
+    await m.reply("Okay 👍")
 
-# ===== QR / CODE =====
-@app.on_message(filters.text & filters.regex("^OR CODE DIJIYE SIR$"))
-async def qr(_, msg: Message):
-    await msg.reply(
-        "Message @sonusir2026 for payment"
-    )
+# ===== BACK =====
+@app.on_message(filters.regex("^Back$"))
+async def back(_, m: Message):
+    await m.reply("Konse class ka questions chahiye", reply_markup=class_kb)
 
 # ===== MAIN MENU =====
-@app.on_message(filters.text & filters.regex("^Main Menu$"))
-async def menu(_, msg: Message):
-    await msg.reply(
-        "Main Menu",
-        reply_markup=main_reply_kb
-    )
+@app.on_message(filters.regex("^Main Menu$"))
+async def menu(_, m: Message):
+    await m.reply("Main Menu", reply_markup=start_kb)
 
 app.run()
