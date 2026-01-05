@@ -6,7 +6,7 @@ BOT_TOKEN = "8433474851:AAGFt_WZ2agAWcM-UVmLxzhSrH-aySkIcaw"
 API_ID = 25742938
 API_HASH = "b35b715fe8dc0a58e8048988286fc5b6"
 
-QR_IMAGE_URL = "https://i.postimg.cc/0N9z7cJf/qr.png"
+QR_IMAGE_URL = "https://files.catbox.moe/9bk3ll.jpg"
 PROOF_CHANNEL = "https://t.me/+eD91tgZztvUxNDQ1"
 
 app = Client(
