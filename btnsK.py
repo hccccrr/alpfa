@@ -1,26 +1,13 @@
 from pyrogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-# ================= MAIN MENU KEYBOARD =================
-main_reply_kb = ReplyKeyboardMarkup(
-    [
-        [KeyboardButton("QUESTIONS CHAHIYE")],
-
-        [
-            KeyboardButton("PAYMENT ABHI KRNA H"),
-            KeyboardButton("PAYMENT BAAD ME KRENGE"),
-        ],
-
-        [KeyboardButton("OR CODE DIJIYE SIR")],
-        [KeyboardButton("Main Menu")],
-    ],
-    resize_keyboard=True,
-    one_time_keyboard=False,
-    selective=False
+# ================= START =================
+start_kb = ReplyKeyboardMarkup(
+    [[KeyboardButton("QUESTIONS CHAHIYE")]],
+    resize_keyboard=True
 )
 
-# ================= CLASS SELECTION KEYBOARD =================
-# 10th + 12th SAME ROW (EXACT SCREENSHOT LOOK)
-class_reply_kb = ReplyKeyboardMarkup(
+# ================= CLASS =================
+class_kb = ReplyKeyboardMarkup(
     [
         [
             KeyboardButton("10TH KA QUESTIONS CHAHIYE"),
@@ -28,20 +15,45 @@ class_reply_kb = ReplyKeyboardMarkup(
         ],
         [KeyboardButton("Main Menu")],
     ],
-    resize_keyboard=True,
-    one_time_keyboard=False,
-    selective=False
+    resize_keyboard=True
 )
 
-# ================= PAYMENT KEYBOARD =================
-payment_reply_kb = ReplyKeyboardMarkup(
+# ================= PROOF =================
+proof_10_kb = ReplyKeyboardMarkup(
     [
-        [KeyboardButton("PAYMENT ABHI KRNA H")],
-        [KeyboardButton("PAYMENT BAAD ME KRENGE")],
-        [KeyboardButton("OR CODE DIJIYE SIR")],
+        [KeyboardButton("10TH KA PROOF DIJIYE")],
+        [KeyboardButton("Back")],
         [KeyboardButton("Main Menu")],
     ],
-    resize_keyboard=True,
-    one_time_keyboard=False,
-    selective=False
+    resize_keyboard=True
+)
+
+proof_12_kb = ReplyKeyboardMarkup(
+    [
+        [KeyboardButton("12TH KA PROOF DIJIYE")],
+        [KeyboardButton("Back")],
+        [KeyboardButton("Main Menu")],
+    ],
+    resize_keyboard=True
+)
+
+# ================= PAYMENT CHOICE =================
+payment_choice_kb = ReplyKeyboardMarkup(
+    [
+        [KeyboardButton("PAYMENT ABHI KRNA H")],
+        [KeyboardButton("PAYMENT BAAD ME KRENGE SIR")],
+        [KeyboardButton("Back")],
+        [KeyboardButton("Main Menu")],
+    ],
+    resize_keyboard=True
+)
+
+# ================= QR ONLY =================
+qr_kb = ReplyKeyboardMarkup(
+    [
+        [KeyboardButton("QR CODE DIJIYE SIR")],
+        [KeyboardButton("Back")],
+        [KeyboardButton("Main Menu")],
+    ],
+    resize_keyboard=True
 )
